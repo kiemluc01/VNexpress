@@ -9,5 +9,5 @@ class like extends Model
 {
     use HasFactory;
 
-    protected $table = 'like';
+    protected $table = 'likee';
 }

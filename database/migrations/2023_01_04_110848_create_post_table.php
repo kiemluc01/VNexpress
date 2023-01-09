@@ -23,8 +23,8 @@ class CreatePostTable extends Migration
             $table->string('shortDescription',"1000")->nullable();
             $table->boolean('domestic')->default(false);
             $table->integer('view')->default(0);
-            $table->dateTime('create_at')->default(DB::raw('NOW()'));
-            $table->dateTime('update_at')->default(DB::raw('NOW()'));
+            $table->dateTime('created_at')->default(DB::raw('NOW()'));
+            $table->dateTime('updated_at')->default(DB::raw('NOW()'));
         });
     }
 

@@ -19,8 +19,8 @@ class CreateDetailPostTable extends Migration
             $table->unsignedBigInteger('post_id');
             $table->foreign('post_id')->references('id')->on('post')->onDelete('cascade');
             $table->longText('content');
-            $table->dateTime('create_at')->default(DB::raw('NOW()'));
-            $table->dateTime('update_at')->default(DB::raw('NOW()'));
+            $table->dateTime('created_at')->default(DB::raw('NOW()'));
+            $table->dateTime('updated_at')->default(DB::raw('NOW()'));
         });
     }
 

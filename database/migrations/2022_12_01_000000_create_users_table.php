@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateUsersTable extends Migration
 {
@@ -24,7 +25,8 @@ class CreateUsersTable extends Migration
             $table->string('ngaysinh')->nullable();
             $table->boolean('is_active')->default(true);
             $table->boolean('is_admin')->default(false);
-            $table->date('create_at')->useCurrent()->nullable();
+            $table->date('created_at')->default(DB::raw('NOW()'));
+            $table->date('updated_at')->default(DB::raw('NOW()'));
             $table->date('last_login')->nullable()->nullable();
         });
     }
