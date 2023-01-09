@@ -124,4 +124,13 @@ class CommentController extends Controller
             return true;
         return false;
     }
+    public static function CountComment($post)
+    {
+        if(comment::query()->where('post_id', $post)->exists())
+        {
+            $coments = comment::query()->where('post_id', $post)->get();
+            return count($coments);
+        }
+        return 0;
+    }
 }

@@ -148,4 +148,10 @@ class PostController extends Controller
         $post->view= $post->view + 1;
         $post->save();
     }
+
+    public static function view_post($post)
+    {
+        $view_posts = post::orderBy('view','desc')->where('id','!=', $post)->limit(5)->get();
+        return $view_posts;
+    }
 }

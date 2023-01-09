@@ -75,19 +75,20 @@
                 <img src="https://scr.vn/wp-content/uploads/2020/07/H%C3%ACnh-T%E1%BA%BFt-h%C3%A0i-vui-g%E1%BB%ADi-s%E1%BA%BFp.jpg" class="img-fluid w-100" alt="">
                <div class="clct my-3 w350 bt">
                 <a href=""><h3>Xem nhiều</h3></a>
-                <img src="https://i1-vnexpress.vnecdn.net/2022/12/07/BHXH-ThuDuc-TTung-2-1670379662.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=AhkTlwH15yUKT7cDjJt3pA" class="img-fluid w-100 mb-3" alt="">
-               <div class=" my-3">
-                <a href="" class="xn" >Thức suốt đêm chờ rút bảo hiểm xã hội một lần </a>
-                <span><i class="fa-solid fa-comment"></i>18</span>
-               </div>
-               <div class="my-3">
-                <a href="" class="xn">Nghịch lý khó tuyển công nhân bị cắt giảm  </a>
-                <span><i class="fa-solid fa-comment"></i>18</span>
-               </div>
-               <div class="my-3">
-                <a href="" class="xn">TPHCM đề nghị dừng 17 dự án  </a>
-                <span><i class="fa-solid fa-comment"></i>18</span>
-               </div>
+                @php  
+                  $view_posts = App\Http\Controllers\POstController::view_post($id);
+                  $view_posts_arr = $view_posts->toArray();
+                  $rootImage_view_post_1 = $view_posts_arr[0]['rootImage'];
+                  $id_view_post_1 = $view_posts_arr[0]['id']
+                @endphp
+                <a href="/details/{{$id_view_post_1}}"><img src="{{$rootImage_view_post_1}}" class="img-fluid w-100 mb-3" alt=""></a>
+               @foreach($view_posts as $view_post)
+                <div class=" my-3">
+                  <a href="/details/{{$view_post->id}}" class="xn" >{{$view_post->name}} </a>
+                  <span><i class="fa-solid fa-comment"></i>{{ App\Http\Controllers\CommentController::CountComment($view_post->id) }}</span>
+                </div>
+                @endforeach
+                </div>
                </div>
             </div>
         </div>
@@ -117,8 +118,7 @@
                       class="tab-pane fade show active"
                       id="ex1-tabs-1"
                       role="tabpanel"
-                      aria-labelledby="ex1-tab-1"
-                    >
+                      aria-labelledby="ex1-tab-1">
                     @foreach($comments as $comment)
                       <div class="d-flex mb-4 g2">
                         @php  
