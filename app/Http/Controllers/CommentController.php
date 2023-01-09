@@ -54,7 +54,7 @@ class CommentController extends Controller
             $comment->save();
             return redirect($cookie->get('url'));
         }
-        return redirect($cookie->get('url'))->with('nologin','bạn chưa đăng nhập');
+        return redirect($cookie->get('url'))->with('nologin','comment không thành công');
         
     }
 
@@ -116,5 +116,12 @@ class CommentController extends Controller
     {
         $list_rep = comment::orderBy('created_at', 'desc')->where('repComment', $id)->get();
         return $list_rep;
+    }
+
+    public static function check($user,$cmt)
+    {
+        if(comment::query()->where('id',$cmt)->where('user_id', $user)->exists())
+            return true;
+        return false;
     }
 }

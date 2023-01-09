@@ -39,11 +39,15 @@ class LikeController extends Controller
     {
         //
         $cookie = new CookieController();
-        $like = new like();
-        $like->cmt_id = $request->idcmt;
-        $like->user_id = $cookie->get('user');
-        $like->save();
-        return redirect($cookie->get('url'));
+        if($cookie->check('user'))
+        {
+            $like = new like();
+            $like->cmt_id = $request->idcmt;
+            $like->user_id = $cookie->get('user');
+            $like->save();
+            return redirect($cookie->get('url'));
+        }
+        return redirect($cookie->get('url'))->with('nologin',"like không thành công");
     }
 
     /**

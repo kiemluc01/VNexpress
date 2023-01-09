@@ -2,7 +2,7 @@
 @section('content')
 @if(session('nologin'))
   <script>
-    var cf = confirm('bạn chưa đăng nhập\n Bạn có muốn đăng nhập không?')
+    var cf = confirm("{{session('nologin')}} \nbạn hãy đăng nhập để có thể trải nghiệm tốt hơn")
     if(cf){
       location.href = '/login'
     }
@@ -140,7 +140,7 @@
                                   <a href="/details/{{$id}}/like/{{$comment->id}}"><i class="fa-regular fa-thumbs-up"></i>{{ App\Http\Controllers\LikeController::Like($comment->id) }}</a>
                                 @endif
                                 <a href="#cmt{{$comment->id}}" class="rep btn-light" aria-label="Close" style="border: none;" idform="repcomment{{$comment->id}}">Trả lời</a>
-                                @if(App\Http\Controllers\CookieController::checkLayout('user'))
+                                @if(App\Http\Controllers\CommentController::check(App\Http\Controllers\CookieController::get('user'), $comment->id))
                                   <a href="/details/{{$id}}/deleteComment/{{$comment->id}}" class="btn-light" aria-label="Close" style="border: none;"><i class="fa-solid fa-trash"></i>Xóa</a>
                                 @endif
                                 <span>{{$comment->created_at}}</span>
@@ -191,7 +191,7 @@
                                   <a href="/details/{{$id}}/like/{{$rep->id}}" id="like{{$rep->id}}"><i class="fa-regular fa-thumbs-up"></i>{{ App\Http\Controllers\LikeController::Like($comment->id) }}</a>
                                 @endif
                                 <a href="#cmt{{$rep->id}}" class="rep btn-light" aria-label="Close" style="border: none;" idform="repcomment{{$comment->id}}">Trả lời</a>
-                                @if(App\Http\Controllers\CookieController::checkLayout('user'))
+                                @if(App\Http\Controllers\CommentController::check(App\Http\Controllers\CookieController::get('user'), $rep->id))
                                 <a href="/details/{{$id}}/deleteComment/{{$rep->id}}" class="btn-light" aria-label="Close" style="border: none;"><i class="fa-solid fa-trash"></i>Xóa</a>
                                 @endif
                                 <span>{{$rep->created_at}}</span>
