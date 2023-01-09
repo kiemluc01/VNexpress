@@ -172,7 +172,8 @@ class PostController extends Controller
         return view('.non-static-layout.search', 
             [
                 'search_posts' => $search_posts->get(),
-                'view_posts' => $view_posts
+                'view_posts' => $view_posts,
+                'text' => $request->text
             ]
         );
     }

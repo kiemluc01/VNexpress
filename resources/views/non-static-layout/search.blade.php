@@ -4,7 +4,7 @@
 <div class="row  ">
     <div class="col-md-7 ghn">
         <form class="input-form" method="post">
-            <input type="text" name="text" class="txt-search input_form w-100  ">
+            <input type="text" name="text" value="{{$text}}" class="txt-search input_form w-100  ">
             <input type="hidden" name="_token"  value="<?php echo csrf_token(); ?>" >
             <button type="submit" class="btn-search">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -13,7 +13,7 @@
         <div class="row mt-3">
             <div class="col-md-4">
                 <p class="mb-2">Thời gian</p>
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" id="time-filter" aria-label="Default select example">
                     <option selected>Tất cả</option>
                     <option value="1">1 ngày qua</option>
                     <option value="2">1 tuần qua</option>
@@ -23,7 +23,7 @@
             </div>
             <div class="col-md-4">
                 <p class="mb-2">Chuyên mục</p>
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" id="category-filter" aria-label="Default select example">
                     <option selected>Tất cả</option>
                     <option value="1">Thế giới</option>
                     <option value="2">Kinh doanh</option>
@@ -31,27 +31,32 @@
                 </select>
             </div>
             <div class="col-md-4">
-                <p class="mb-2">Dạng bài</p>
-                <select class="form-select" aria-label="Default select example">
+                <p class="mb-2">Khu vực</p>
+                <select class="form-select" id="dometisc" aria-label="Default select example">
                     <option selected>Tất cả</option>
-                    <option value="1">Bài viết</option>
-                    <option value="2">Ảnh</option>
-                    <option value="3">Video</option>
+                    <option value="1">Thế giới</option>
+                    <option value="2">Trong nước</option>
                 </select>
             </div>
         </div>
         <div>
-            @foreach($search_posts as $search_post)
-            <div class="row mt-3 "> 
-                <div class="col-md-8">
-                    <a href="/details/{{$search_post->id}}"><h5 class="serch_title">{{$search_post->name}}</h5></a>
-                    <p>{{$search_post->shortDescription}}</p>
+            @if(count($search_posts) == 0)
+                <div class="row mt-3">
+                    <h2 style="text-indent: 50px; margin-top:50px;">Không tìm thấy bài viết nào</h2>
                 </div>
-                <div class="col-md-4">
-                    <img src="{{$search_post->rootImage}}" class="img-fluid w-100" alt="">
+            @else
+                @foreach($search_posts as $search_post)
+                <div class="row mt-3 "> 
+                    <div class="col-md-8">
+                        <a href="/details/{{$search_post->id}}"><h5 class="serch_title">{{$search_post->name}}</h5></a>
+                        <p>{{$search_post->shortDescription}}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="{{$search_post->rootImage}}" class="img-fluid w-100" alt="">
+                    </div>
                 </div>
-            </div>
-            @endforeach
+                @endforeach
+            @endif
         </div>
     </div>
     <div class="col-md-5">
@@ -72,4 +77,9 @@
         @endforeach
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        
+    })
+</script>
 @endsection
