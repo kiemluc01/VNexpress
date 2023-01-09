@@ -1,0 +1,37 @@
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}
+.form-control-lg{
+    font-size: 1.1rem !important;
+}
+input:focus{
+    outline: none !important;
+   
+}
+.btn-primaryy{
+    background-color: #3b71ca;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: white;
+}
+.btn-primaryy i{
+    color: white;
+    margin: auto;
+}
+.btn-primaryym{
+    background-color: #3b71ca;
+    color: white;
+}

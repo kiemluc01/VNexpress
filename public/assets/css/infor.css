@@ -1,0 +1,347 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: black;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.gn {
+    font-size: 14px;
+    line-height: 16px;
+    color: #9f224e;
+    font-weight: bold;
+    margin-bottom: 5px;
+    width: 100%;
+    float: left;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 0 10px;
+}
+
+.meta-news {
+    display: flex;
+    flex-direction: column;
+    gap: 20px 0;
+}
+
+.meta-news-info {
+    font-size: 14px;
+    color: #757575;
+    font-style: italic;
+    line-height: 140%;
+    margin-right: 0;
+}
+
+.meta-image img {
+    border-radius: 50%;
+    width: 80px;
+}
+
+i {
+    color: #bdbdbd;
+    margin-right: 7px;
+}
+
+.g10 {
+    gap: 0 10px;
+    display: flex;
+}
+
+.tl {
+    color: #757575;
+    font-weight: 500;
+}
+
+.br {
+    border-right: 2px solid #e5e5e5;
+}
+
+.bt {
+    border-bottom: 2px solid #e5e5e5;
+}
+
+li {
+    list-style: none;
+}
+
+.ti-ul {
+    display: flex;
+    gap: 0 10px;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+
+.a-k {
+    font-weight: 400;
+}
+
+.ti-ul li:first-child .a-k {
+    font-size: 22px;
+    font-weight: 500;
+    position: relative;
+}
+
+.ti-ul li:first-child .a-k::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    background-color: #9f224e;
+}
+
+.g-a {
+    color: #9f224e;
+    text-decoration: underline;
+}
+
+.g-a:hover {
+    text-decoration: underline;
+}
+
+p {
+    line-height: 140%;
+    font-size: 14px;
+    color: #4f4f4f;
+    margin-bottom: 0;
+}
+
+.ab {
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+}
+
+.idam {
+    font-weight: 600;
+}
+
+.g3 {
+    gap: 0 30px;
+}
+
+table td {
+    padding: 2px 10px !important;
+    font-size: 12px;
+}
+
+table {
+    margin-bottom: 0 !important;
+}
+
+.bt:last-child {
+    border: 0;
+}
+
+.row2-title {
+    font-size: 20px;
+}
+
+.br:last-child {
+    border: 0;
+}
+
+.ip {
+    height: 32px;
+    line-height: 32px;
+    border-radius: 16px;
+    border: 1px solid #e5e5e5;
+    padding: 0 30px 0 14px;
+    margin: 0;
+    width: 160px;
+    outline: none;
+}
+
+.search {
+    position: relative;
+}
+
+.sr {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: 0;
+}
+
+button:focus {
+    outline: none;
+}
+
+sr:focus {
+    outline: none;
+}
+
+.bb {
+    border-top: 1px solid #e5e5e5;
+}
+
+.b1 {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.b0 {
+    margin-bottom: 0;
+}
+
+.head li {
+    font-weight: 700;
+    color: #4f4f4f;
+    cursor: pointer;
+}
+
+.head li:hover {
+    color: #b52759;
+}
+
+.tivie {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background: white;
+    /* transition: all 0.2s; */
+}
+
+.sclctiet {
+    position: fixed;
+    /* right: 0; */
+    left: auto;
+    float: none;
+    top: 50px;
+    z-index: 999;
+    transition: all 0.3s;
+}
+
+.iconi {
+    position: fixed;
+    top: 0px;
+    float: none;
+    right: auto;
+}
+
+
+/* .clct{
+    position: sticky;
+    z-index: 999;
+  } */
+
+.scl {
+    position: relative;
+}
+
+.yk input:focus {
+    border: #9f224e;
+    outline: none;
+}
+
+
+/* .ic{
+    position: absolute;
+    left: -50px;
+   gap: 20px 0;
+   top: 150px;
+    display: flex;
+    flex-direction: column;
+  } */
+
+.g50 {
+    gap: 20px 0;
+    /* padding-top:150px ; */
+    height: 100vh;
+    justify-content: center;
+}
+
+.ic i {
+    font-size: 20px;
+}
+
+.nd p {
+    margin: 0 0 1em;
+    line-height: 160%;
+    font-size: 20px;
+}
+
+.w350 {
+    width: 350px;
+}
+
+.xn {
+    font-size: 17px;
+    font-weight: 500;
+    color: #4a4a4a;
+}
+
+.nav-tabs .nav-link.active {
+    border: 0;
+    color: red;
+}
+
+
+/* .nav-tabs .nav-link:hover{
+      border: 0;
+      outline: none;
+  } */
+
+.nav-tabs .nav-link:hover {
+    border-color: 0 !important;
+}
+
+.g2 {
+    gap: 0 15px;
+}
+
+.b50 {
+    border-radius: 50%;
+}
+
+.h50 {
+    height: 50px;
+}
+
+.h30 {
+    height: 30px;
+}
+
+.tx {
+    font: 400 16px/150% arial;
+    background: #fff;
+    border: none;
+    width: 100%;
+    height: 58px;
+    color: #4f4f4f !important;
+    overflow: hidden;
+    padding: 5px 37px 0 15px;
+    overflow: hidden;
+    resize: none;
+}
+
+.textare {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    position: relative;
+    padding: 10px 0 10px 0;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+.ts {
+    color: #076db6;
+}
