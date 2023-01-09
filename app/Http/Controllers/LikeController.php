@@ -105,9 +105,9 @@ class LikeController extends Controller
         return 0;
     }
 
-    public static function check($user)
+    public static function check($user, $cmt)
     {
-        if(like::query()->where('user_id',$user)->exists())
+        if(like::query()->where('cmt_id',$cmt)->where('user_id',$user)->exists())
             return true;
         return false;
     }
