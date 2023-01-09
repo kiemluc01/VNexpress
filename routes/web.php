@@ -39,6 +39,7 @@ Route::get('/profile', function () {
     return view('non-static-layout.profile');
 });
 
+
 Route::get('/send-mail', function () {
     $details = [
         'title' => 'Thông Báo Về Tin Mới Trong TIN TỨC EXPRESS',
@@ -66,7 +67,8 @@ Route::controller(SocialController::class)->group(function(){
 
 Route::controller(PostController::class)->group(function(){
     Route::get('/','index');
-    Route::get('details/{id}','show');
+    Route::get('/details/{id}','show');
+    Route::get('/search', 'search');
 });
  
 Route::get('/admin', function () {
@@ -90,3 +92,4 @@ Route::controller(LikeController::class)->group(function(){
     Route::get('details/{id}/like/{idcmt}', 'store');
     Route::get('details/{id}/unlike/{idcmt}', 'destroy');
 });
+

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/assets/css/login.css" />
     <link rel="stylesheet" href="/assets/css/infor.css" />
     <link rel="stylesheet" href="/assets/css/nav.css" />
+    <link rel="stylesheet" href="/assets/css/search.css" />
 </head>
 
 <body>

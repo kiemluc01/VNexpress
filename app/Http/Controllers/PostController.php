@@ -22,7 +22,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $post_new = post::orderBy('create_at','asc')->first();
+        $post_new = post::orderBy('created_at','asc')->first();
         $view_posts = post::orderBy('view','desc')->where('id','!=',$post_new->id)->limit(5)->get();
         return view('non-static-layout.home',[
             'post_new' => $post_new->toArray(),
@@ -153,5 +153,20 @@ class PostController extends Controller
     {
         $view_posts = post::orderBy('view','desc')->where('id','!=', $post)->limit(5)->get();
         return $view_posts;
+    }
+
+    public static function view_post_search($request)
+    {
+        $query = post::join('category','post.category_id','=','category.id');
+        $search_posts = $query->select('post.id')->where('post.name','like','%'.$request.'%')->orwhere('category.name','like','%'.$request.'%');
+        $view_posts =post::orderBy('view','desc')->whereNotIn('id',$search_posts)->limit(5)->get();
+        return $view_posts;
+    }
+
+    public function search(Request $request)
+    {
+        $query = post::join('category','post.category_id','=','category.id');
+        $search_posts = $query->select('post.id', 'rootImage', 'post.name', 'shortDescription')->where('post.name','like','%'.$request->text.'%')->orwhere('category.name','like','%'.$request->text.'%')->get();
+        return view('.non-static-layout.search', ['search_posts' => $search_posts]);
     }
 }

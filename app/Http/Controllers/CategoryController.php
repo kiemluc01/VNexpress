@@ -92,7 +92,7 @@ class CategoryController extends Controller
 
     public static function getID($name)
     {
-        $cat = category::query()->where('name',$name)->first();
+        $cat = category::query()->where('name','like','%'.$name.'%')->first();
         return $cat->id;
     }
 }

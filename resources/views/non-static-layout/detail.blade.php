@@ -74,13 +74,13 @@
             <div class="col-md-4   ">
                 <img src="https://scr.vn/wp-content/uploads/2020/07/H%C3%ACnh-T%E1%BA%BFt-h%C3%A0i-vui-g%E1%BB%ADi-s%E1%BA%BFp.jpg" class="img-fluid w-100" alt="">
                <div class="clct my-3 w350 bt">
-                <a href=""><h3>Xem nhiều</h3></a>
-                @php  
-                  $view_posts = App\Http\Controllers\POstController::view_post($id);
-                  $view_posts_arr = $view_posts->toArray();
-                  $rootImage_view_post_1 = $view_posts_arr[0]['rootImage'];
-                  $id_view_post_1 = $view_posts_arr[0]['id']
-                @endphp
+                <h3>Xem nhiều</h3>
+                  @php  
+                    $view_posts = App\Http\Controllers\PostController::view_post($id);
+                    $view_posts_arr = $view_posts->toArray();
+                    $rootImage_view_post_1 = $view_posts_arr[0]['rootImage'];
+                    $id_view_post_1 = $view_posts_arr[0]['id']
+                  @endphp
                 <a href="/details/{{$id_view_post_1}}"><img src="{{$rootImage_view_post_1}}" class="img-fluid w-100 mb-3" alt=""></a>
                @foreach($view_posts as $view_post)
                 <div class=" my-3">
