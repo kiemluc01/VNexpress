@@ -45,7 +45,11 @@
                     <h2 style="text-indent: 50px; margin-top:50px;">Không tìm thấy bài viết nào</h2>
                 </div>
             @else
+                @php  
+                    $count =0;
+                @endphp
                 @foreach($search_posts as $search_post)
+
                 <div class="row mt-3 "> 
                     <div class="col-md-8">
                         <a href="/details/{{$search_post->id}}"><h5 class="serch_title">{{$search_post->name}}</h5></a>
@@ -55,6 +59,11 @@
                         <img src="{{$search_post->rootImage}}" class="img-fluid w-100" alt="">
                     </div>
                 </div>
+                @php
+                    $count++;
+                    if($count == 5)
+                        break;  
+                @endphp
                 @endforeach
             @endif
         </div>
@@ -62,19 +71,44 @@
     <div class="col-md-5">
         <h3>đọc nhiều</h3>
         <hr>
-        @foreach($view_posts as $view_post)
-            <div class="bt pb-2 ">
-                <a href="/details/{{$view_post->id}}">{{$view_post->name}}</a>
-                <div class="row pt-3">
-                    <a href="/details/{{$view_post->id}}" class="col-md-5">
-                        <img src="{{$view_post->rootImage}}" class="img-fluid" alt="">
-                    </a>
-                    <div class="col-md-7 pl-0">
-                        <p class="ab">{{$view_post->shortDescription}}</p>
+        @if(count($view_posts) != 0)
+            @foreach($view_posts as $view_post)
+                <div class="bt pb-2 ">
+                    <a href="/details/{{$view_post->id}}">{{$view_post->name}}</a>
+                    <div class="row pt-3">
+                        <a href="/details/{{$view_post->id}}" class="col-md-5">
+                            <img src="{{$view_post->rootImage}}" class="img-fluid" alt="">
+                        </a>
+                        <div class="col-md-7 pl-0">
+                            <p class="ab">{{$view_post->shortDescription}}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        @else  
+            @php 
+                $search_posts = $search_posts->toArray();
+                $n = 10;
+            @endphp
+            @if(count($search_posts) < 9)
+                @php
+                    $n = count($search_posts);
+                @endphp
+            @endif
+            @for($i = 5; $i < $n; $i++)
+                <div class="bt pb-2 ">
+                    <a href="/details/{{$search_posts[$i]['id']}}">{{$search_posts[$i]['name']}}</a>
+                    <div class="row pt-3">
+                        <a href="/details/{{$search_posts[$i]['id']}}" class="col-md-5">
+                            <img src="{{$search_posts[$i]['rootImage']}}" class="img-fluid" alt="">
+                        </a>
+                        <div class="col-md-7 pl-0">
+                            <p class="ab">{{$search_posts[$i]['shortDescription']}}</p>
+                        </div>
+                    </div>
+                </div>
+            @endfor
+        @endif
     </div>
 </div>
 <script>
