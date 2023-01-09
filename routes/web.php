@@ -68,7 +68,7 @@ Route::controller(SocialController::class)->group(function(){
 Route::controller(PostController::class)->group(function(){
     Route::get('/','index');
     Route::get('/details/{id}','show');
-    Route::get('/search', 'search');
+    Route::post('/search', 'search');
 });
  
 Route::get('/admin', function () {

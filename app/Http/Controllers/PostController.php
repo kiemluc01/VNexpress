@@ -155,10 +155,10 @@ class PostController extends Controller
         return $view_posts;
     }
 
-    public static function view_post_search($request)
+    public static function view_post_search(Request $request)
     {
         $query = post::join('category','post.category_id','=','category.id');
-        $search_posts = $query->select('post.id')->where('post.name','like','%'.$request.'%')->orwhere('category.name','like','%'.$request.'%');
+        $search_posts = $query->select('post.id')->where('post.name','like','%'.$request->text.'%')->orwhere('category.name','like','%'.$request->text.'%');
         $view_posts =post::orderBy('view','desc')->whereNotIn('id',$search_posts)->limit(5)->get();
         return $view_posts;
     }
@@ -166,7 +166,14 @@ class PostController extends Controller
     public function search(Request $request)
     {
         $query = post::join('category','post.category_id','=','category.id');
-        $search_posts = $query->select('post.id', 'rootImage', 'post.name', 'shortDescription')->where('post.name','like','%'.$request->text.'%')->orwhere('category.name','like','%'.$request->text.'%')->get();
-        return view('.non-static-layout.search', ['search_posts' => $search_posts]);
+        $search_posts = $query->select('post.id')->where('post.name','like','%'.$request->text.'%')->orwhere('category.name','like','%'.$request->text.'%');
+        $view_posts =post::orderBy('view','desc')->whereNotIn('id',$search_posts)->limit(5)->get();
+        $search_posts = $query->select('post.id', 'rootImage', 'post.name', 'shortDescription')->where('post.name','like','%'.$request->text.'%')->orwhere('category.name','like','%'.$request->text.'%');
+        return view('.non-static-layout.search', 
+            [
+                'search_posts' => $search_posts->get(),
+                'view_posts' => $view_posts
+            ]
+        );
     }
 }

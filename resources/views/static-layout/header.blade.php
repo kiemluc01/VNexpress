@@ -20,12 +20,13 @@
                 </div>
             </div>
             <div class="navbar-nav ml-auto br align-items-center">
-                <div class="search">
-                    <input type="text" placeholder="Tìm kiếm" class="ip" id="search">
-                    <button class="sr">
+                <form method="post" action="/search" class="search">
+                    <input type="text" name="text" placeholder="Tìm kiếm" class="ip" id="search">
+                    <input type="hidden" name="_token"  value="<?php echo csrf_token(); ?>" >
+                    <button type="submit" class="sr">
                         <i class="fa-solid fa-magnifying-glass "></i>
                     </button>
-                </div>
+                </form>
                 
                 @if(App\Http\Controllers\CookieController::checklayout('user'))
                 @php

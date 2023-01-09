@@ -4,7 +4,8 @@
 <div class="row  ">
     <div class="col-md-7 ghn">
         <form class="input-form" method="post">
-            <input type="text" class="txt-search input_form w-100  ">
+            <input type="text" name="text" class="txt-search input_form w-100  ">
+            <input type="hidden" name="_token"  value="<?php echo csrf_token(); ?>" >
             <button type="submit" class="btn-search">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
@@ -56,9 +57,6 @@
     <div class="col-md-5">
         <h3>đọc nhiều</h3>
         <hr>
-        @php  
-            $view_posts = App\Http\Controllers\PostController::view_post_search($_REQUEST['text']);
-        @endphp
         @foreach($view_posts as $view_post)
             <div class="bt pb-2 ">
                 <a href="/details/{{$view_post->id}}">{{$view_post->name}}</a>
