@@ -1,5 +1,13 @@
 @extends('.layout.main-layout')
 @section('content')
+@if(session('nologin'))
+  <script>
+    var cf = confirm('bạn chưa đăng nhập\n Bạn có muốn đăng nhập không?')
+    if(cf){
+      location.href = '/login'
+    }
+  </script>
+@endif
 @if(App\Http\Controllers\CookieController::checklayout('url'))
   @if(App\Http\Controllers\CookieController::get('url') != "/details/$id")
     @php 
@@ -132,7 +140,9 @@
                                   <a href="/details/{{$id}}/like/{{$comment->id}}"><i class="fa-regular fa-thumbs-up"></i>{{ App\Http\Controllers\LikeController::Like($comment->id) }}</a>
                                 @endif
                                 <a href="#cmt{{$comment->id}}" class="rep btn-light" aria-label="Close" style="border: none;" idform="repcomment{{$comment->id}}">Trả lời</a>
-                                <a href="/details/{{$id}}/deleteComment/{{$comment->id}}" class="btn-light" aria-label="Close" style="border: none;"><i class="fa-solid fa-trash"></i>Xóa</a>
+                                @if(App\Http\Controllers\CookieController::checkLayout('user'))
+                                  <a href="/details/{{$id}}/deleteComment/{{$comment->id}}" class="btn-light" aria-label="Close" style="border: none;"><i class="fa-solid fa-trash"></i>Xóa</a>
+                                @endif
                                 <span>{{$comment->created_at}}</span>
                             </div>
                         </div>

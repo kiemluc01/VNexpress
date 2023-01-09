@@ -38,18 +38,24 @@ class CommentController extends Controller
     public function store(Request $request,$id)
     {
         //
-        $comment = new comment();
-        $comment->post_id = $id;
-        if(isset($request->rep_text)){
-            $comment->repComment = $request->input('idcmt');
-            $comment->content = $request->input('rep_text');
-        }
-        else
-            $comment->content = $request->input('text_cmt');
         $cookie = new CookieController();
-        $comment->user_id = $cookie->get('user');
-        $comment->save();
-        return redirect($cookie->get('url'));
+        if($cookie->check('user'))
+        {
+            $comment = new comment();
+            $comment->post_id = $id;
+            if(isset($request->rep_text)){
+                $comment->repComment = $request->input('idcmt');
+                $comment->content = $request->input('rep_text');
+            }
+            else
+                $comment->content = $request->input('text_cmt');
+            
+            $comment->user_id = $cookie->get('user');
+            $comment->save();
+            return redirect($cookie->get('url'));
+        }
+        return redirect($cookie->get('url'))->with('nologin','bạn chưa đăng nhập');
+        
     }
 
     /**
