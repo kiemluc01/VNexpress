@@ -9,43 +9,49 @@
 <h4 class="mt-3">Tìm kiếm</h4>
 <div class="row  ">
     <div class="col-md-7 ghn">
-        <form class="input-form" method="post">
-            <input type="text" name="text" value="{{$search_text}}" class="txt-search input_form w-100  ">
-            <input type="hidden" name="_token"  value="<?php echo csrf_token(); ?>" >
-            <button type="submit" class="btn-search">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
+        <form action="/search" method="post">
+            <form class="input-form" action="/search" method="post">
+                <input type="text" name="text" id="text" value="{{$search_text}}" class="txt-search input_form w-100  ">
+                <input type="hidden" name="_token"  value="<?php echo csrf_token(); ?>" >
+                <button type="submit" class="btn-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+            <!-- <div class="row mt-3">
+                <div class="col-md-4">
+                    <p class="mb-2">Thời gian</p>
+                    <select class="form-select filter" id="time"  aria-label="Default select example">
+                        <option value="0" selected>Tất cả</option>
+                        <option value="1">1 ngày qua</option>
+                        <option value="7">1 tuần qua</option>
+                        <option value="30">1 tháng qua </option>
+                        <option value="365">1 năm qua </option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <p class="mb-2">Chuyên mục</p>
+                    <select class="form-select filter" id="category-filter" aria-label="Default select example">
+                        <option value="0" selected>Tất cả</option>
+                        <option value="1">Thế giới</option>
+                        <option value="2">Kinh doanh</option>
+                        <option value="3">Thể thao</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <p class="mb-2">Khu vực</p>
+                    <select class="form-select filter" id="khuvuc" aria-label="Default select example">
+                        <option value="0" selected>Tất cả</option>
+                        <option value="false">Thế giới</option>
+                        <option value="true">Trong nước</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <input type="hidden" name="_token"  value="<?php echo csrf_token(); ?>" >
+                    <input type="submit" value="lọc" class="" id="submit" >
+                </div>
+            </div> -->
         </form>
-        <div class="row mt-3">
-            <div class="col-md-4">
-                <p class="mb-2">Thời gian</p>
-                <select class="form-select" id="time-filter" aria-label="Default select example">
-                    <option selected>Tất cả</option>
-                    <option value="1">1 ngày qua</option>
-                    <option value="2">1 tuần qua</option>
-                    <option value="3">1 tháng qua </option>
-                    <option value="3">1 năm qua </option>
-                </select>
-            </div>
-            <div class="col-md-4">
-                <p class="mb-2">Chuyên mục</p>
-                <select class="form-select" id="category-filter" aria-label="Default select example">
-                    <option selected>Tất cả</option>
-                    <option value="1">Thế giới</option>
-                    <option value="2">Kinh doanh</option>
-                    <option value="3">Thể thao</option>
-                </select>
-            </div>
-            <div class="col-md-4">
-                <p class="mb-2">Khu vực</p>
-                <select class="form-select" id="khuvuc" aria-label="Default select example">
-                    <option selected>Tất cả</option>
-                    <option value="1">Thế giới</option>
-                    <option value="2">Trong nước</option>
-                </select>
-            </div>
-        </div>
-        <div>
+        <div id="search_post">
             @if(count($search_posts) == 0)
                 <div class="row mt-3">
                     <h2 style="text-indent: 50px; margin-top:50px;">Không tìm thấy bài viết nào</h2>
@@ -119,11 +125,8 @@
 </div>
 <script>
     $(document).ready(function(){
-        $('#khuvuc').change(function(){
-            var text = this.value 
-            $.ajax({
-
-            })
+        $('.filter').change(function(){
+            $('#submit').trigger('click');
         })
     })
 </script>
