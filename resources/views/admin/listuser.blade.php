@@ -3,7 +3,7 @@
 <div class="card shadow mb-4">
                   <div class="card-header py-3" style="display: flex; justify-content: space-between;">
                         <h6 class="m-0 font-weight-bold text-primary">Danh sách người dùng</h6>
-                        <button type="button" class="btn btn-primary">Thêm người dùng</button>
+                        <a href="/admin/users/create" class="btn btn-primary">Thêm người dùng</a>
                   </div>
                   
                   <div class="card-body">

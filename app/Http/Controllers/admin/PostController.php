@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\category;
+use App\Models\detail_post;
 use App\Models\post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -84,5 +85,36 @@ class PostController extends Controller
 
         $post->delete();
         return redirect('admin/post');
+    }
+
+    public function detail($id)
+    {
+        $detail_post = detail_post::find($id);
+        $post = post::find($id);
+        return view('admin/detailpost', ["detail_post" => $detail_post], ["post"=> $post]);
+    }
+
+    public function addcontent(Request $request, $id)
+    {
+        $post_detail = detail_post::find($id);
+        return view("admin.addcontentpost", ["post_detail" => $post_detail]);
+        
+    }
+
+    public function storecontent(Request $request, $id)
+    {
+        $allRequest  = $request->all();
+        $content  = $allRequest['content']; 
+
+        //Gán giá trị vào array
+        $dataInsertToDatabase = array(
+            'content'  => $content,
+            "post_id" => $id,
+            'create_at' => date('Y-m-d H:i:s'),
+            'update_at' => date('Y-m-d H:i:s'),
+        );
+
+        $insertData = DB::table('detail_post')->insert($dataInsertToDatabase);
+        return redirect('/admin/post');
     }
 }

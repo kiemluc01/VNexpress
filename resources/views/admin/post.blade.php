@@ -11,6 +11,8 @@
             <!-- DataTales Example -->
             @yield("listpost") 
             @yield("create") 
+            @yield("detail")
+            @yield("addcontent")
 
       </div>
       <!-- /.container-fluid -->

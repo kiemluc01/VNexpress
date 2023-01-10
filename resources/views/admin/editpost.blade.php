@@ -6,6 +6,8 @@
             <center>
                   <h4>Sửa bài báo</h4>
             </center>
+            
+
             <form action="/admin/post/edit/{{ $post->id}}" method="post">
                   <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}" />
                   <div class="form-group">
@@ -29,7 +31,7 @@
                         <label for="">Đường dẫn ảnh</label>
                         <input type="text" class="form-control" value="{{ $post->rootImage}}" id="rootImage" name="rootImage" placeholder="Đường dẫn ảnh" required />
                   </div>
-                  <center><button type="submit" class="btn btn-primary">Sửa bài báo</button></center>
+                  <center><button type="submit" class="btn btn-primary">Sửa bài báo</button> <a href="/admin/post/content/{{$post->id}}" class="btn btn-primary">Thêm nội dung</a></center>
             </form>
       </div>
 </div>
