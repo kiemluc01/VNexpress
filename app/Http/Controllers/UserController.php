@@ -20,10 +20,10 @@ class UserController extends Controller
         $cookie = new CookieController();
         $id = $cookie->get('user');
 
-        $user = DB::table('users')->find($id);
+        $user = User::find($id);
 
         // dd($user);
-        return view('non-static-layout.profile', compact('user'));
+        return view('non-static-layout.profile', ['user' => $user]);
     }
 
     /**
@@ -76,23 +76,19 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request)
     {
         $cookie = new CookieController();
         $id = $cookie->get('user');
-
-        $user = DB::table('users')->find($id);
-
-        $user->first_name = $request->hoten;
-
+        $user = User::find($id);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
         $user->email = $request->email;
-
         $user->sdt = $request->sdt;
         $user->password = $request->password;
-
         $user->save();
 
-        // return redirect()->route('profile.index')->with('success', 'User Data has been updated successfully');
+        return redirect('/profile')->with('success', 'User Data has been updated successfully');
     }
 
     /**

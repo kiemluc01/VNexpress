@@ -2,6 +2,9 @@
 
 @extends('.layout.main-layout')
 @section('content')
+@php  
+App\Http\Controllers\CookieController::set('url', '/profile')
+@endphp
 <div class="container_tt my-5">
 <div class="flexkhung">
     <div class="col-md-3 border brsc">
@@ -128,9 +131,7 @@
     </div>
 </div>
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <form method="POST" action="{{ route('profile.update', $user->id) }}" enctype="multipart/form-data">
-        @method('PUT')
-        @csrf
+    <form method="post" action="/profile" >
         <div class="modal-dialog containerr modal-dialog-centered" role="document">
             <div class="modal-content px-4">
             <div class="modal-header">
@@ -142,10 +143,6 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="">
-                        <!-- <div class="d-flex align-items-center justify-content-between my-2">
-                            <h5></h5>
-                            <p data-toggle="modal" data-target="#exampleModalCenter">Cập nhập</p>
-                        </div> -->
                             <strong>Ảnh đại diện</strong>
                         <div class=" box_upload_anh my-3">
                             <form for="#" class="act_upload">
@@ -155,18 +152,26 @@
                             </form>
                             <input type="hidden" id="myvne_avatar_input" name="myvne_avatar" value="">
                         </div>
-                        </div>
+                    </div>
                         <div class=" my-3">
-                              
                             <h5>Tài khoản</h5>
                             <div class="row mb-3">
                                 <div class="col-md-3 mb-2">
-                                    <span>Họ và tên</span>
-        
+                                    <span>First name</span>
                                 </div>
                                 <div class="col-md-9 ">
                                     <div class="d-flex justify-content-between" >
-                                    <input type="text" name="hoten" value="{{$user->first_name}}" class="w-100 clm p-1">
+                                    <input type="text" name="first_name" value="{{$user->first_name}}" class="w-100 clm p-1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-3 mb-2">
+                                    <span>Last name</span>
+                                </div>
+                                <div class="col-md-9 ">
+                                    <div class="d-flex justify-content-between" >
+                                    <input type="text" name="last_name" value="{{$user->last_name}}" class="w-100 clm p-1">
                                     
                                     </div>
                                 </div>
@@ -175,15 +180,12 @@
                             <div class="row align-items-center mb-3 ">
                                 <div class="col-md-3 mb-2">
                                     <span>Email</span>
-        
                                 </div>
                                 <div class="col-md-9 ">
                                     <div class="d-flex justify-content-between" >
-                                    <input type="text" name="email" value="{{$user->email}}" class="w-100 clm p-1">
-                                        
+                                        <input type="text" name="email" value="{{$user->email}}" class="w-100 clm p-1">
                                     </div>
                                 </div>
-        
                             </div>
                             <div class="row align-items-center mb-3">
                                 <div class="col-md-3 mb-2">
@@ -215,7 +217,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Lưu</button>
+                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+                    <input type="submit" class="btn btn-secondary" value="Lưu"/>
                     
                 </div>
             </div>

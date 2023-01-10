@@ -36,7 +36,7 @@ Route::get('/register', function () {
 });
 
 //information
-Route::resource('profile', UserController::class);
+// Route::resource('profile', UserController::class);
 
 
 Route::get('/send-mail', function () {
@@ -57,6 +57,8 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/login', 'login'); //login method
     Route::post('/register', 'register'); //register method
     Route::get('logout', 'logout'); //method logout
+    Route::post('/profile', 'update');
+    Route::get('/profile', 'index');
 });
 
 Route::controller(SocialController::class)->group(function () {
