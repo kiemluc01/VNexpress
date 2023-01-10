@@ -58,23 +58,27 @@
                       @foreach($nots as $not)
                         @if($not->user_id_cmt != null)
                           <li class="d-flex p-1 gap10 align-items-center mb-2">
-                            <div class="img-tb">
-                              <img src="{{App\Http\Controllers\UserCOntroller::rootImage($not->user_id_cmt)}}" alt="">
-                            </div>
-                            <div>
-                              <p class="tt-tb"><strong>{{App\Http\Controllers\UserCOntroller::getName($not->user_id_cmt)}}</strong> {{$not->title}}</p>
-                              <p style="color: #1876f2;">{{$not->created_at}}</p>
-                            </div>
+                            <a href="/details/{{$not->post_id}}">
+                              <div class="img-tb">
+                                <img src="{{App\Http\Controllers\UserCOntroller::rootImage($not->user_id_cmt)}}" alt="">
+                              </div>
+                              <div>
+                                <p class="tt-tb"><strong>{{App\Http\Controllers\UserCOntroller::getName($not->user_id_cmt)}}</strong> {{$not->title}}</p>
+                                <p style="color: #1876f2;">{{$not->created_at}}</p>
+                              </div>
+                            </a>
                           </li>
                         @else  
                           <li class="d-flex p-1 gap10 align-items-center mb-2">
-                            <div class="img-tb">
-                              <img src="/assets/image/icon/logo.png" alt="">
-                            </div>
-                            <div>
-                              <p class="tt-tb"><strong>Tin Tức VNexpress</strong> {{$not->title}}</p>
-                              <p style="color: #1876f2;">{{$not->created_at}}</p>
-                            </div>
+                            <a class="d-flex p-1 gap10 align-items-center mb-2" href="/details/{{$not->post_id}}">
+                              <div class="img-tb">
+                                <img src="/assets/image/icon/logo.png" alt="">
+                              </div>
+                              <div>
+                                <p class="tt-tb"><strong>Tin Tức VNexpress</strong> {{$not->title}}</p>
+                                <p style="color: #1876f2;">{{$not->created_at}}</p>
+                              </div>
+                            </a>
                           </li>
                         @endif
                       @endforeach
