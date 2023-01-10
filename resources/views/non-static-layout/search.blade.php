@@ -1,10 +1,16 @@
 @extends('.layout.main-layout')
 @section('content')
+@php  
+    $search_text = '';
+    if(isset($text))
+        $search_text = $text;
+@endphp
+
 <h4 class="mt-3">Tìm kiếm</h4>
 <div class="row  ">
     <div class="col-md-7 ghn">
         <form class="input-form" method="post">
-            <input type="text" name="text" value="{{$text}}" class="txt-search input_form w-100  ">
+            <input type="text" name="text" value="{{$search_text}}" class="txt-search input_form w-100  ">
             <input type="hidden" name="_token"  value="<?php echo csrf_token(); ?>" >
             <button type="submit" class="btn-search">
                 <i class="fa-solid fa-magnifying-glass"></i>

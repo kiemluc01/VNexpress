@@ -92,7 +92,11 @@ class CategoryController extends Controller
 
     public static function getID($name)
     {
-        $cat = category::query()->where('name','like','%'.$name.'%')->first();
-        return $cat->id;
+        if(category::query()->where('name','like','%'.$name.'%')->exists()){
+
+            $cat = category::query()->where('name','like','%'.$name.'%')->first();
+            return $cat->id;
+        }
+        return 0;
     }
 }

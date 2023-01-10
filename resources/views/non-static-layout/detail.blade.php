@@ -152,7 +152,7 @@
                           $rootImageUser = App\Http\Controllers\UserController::rootImage(App\Http\Controllers\CookieController::get('user'));
                         @endphp
                         <div id="repcomment{{$comment->id}}" class="repcmt row g-3" style="margin-left: 50px; display:none;">
-                          <form action="/details/{{$id}}/comment" method="post">
+                          <form action="/details/{{$id}}/comment" method="post" onsubmit="return false" >
                             <div class="col-auto" style="padding-left:0; padding-right: 0px; line-height:30px;">
                               <img src="{{$rootImageUser}}" alt="" style="width:20px; height:20px;">
                             </div>
@@ -162,7 +162,7 @@
                               <input type="hidden" name="_token"  value="<?php echo csrf_token(); ?>">
                             </div>
                             <div class="col-auto">
-                              <input type="submit" class="btn btn-primary mb-3" value="gữi"/>
+                              <input type="submit" class="btn btn-primary mb-3 submit_cmt" value="gữi"/>
                             </div>
                           </form>
                         </div>
@@ -170,36 +170,38 @@
                       @php  
                         $list_rep = App\Http\Controllers\CommentController::getRepComment($comment->id);
                       @endphp
-                      @foreach($list_rep as $rep)
-                      <div class="d-flex mb-4 g2" style="margin-left: 20px;">
-                        @php  
-                          $name = App\Http\Controllers\UserController::getName($rep->user_id);
-                          $rootImage = App\Http\Controllers\UserController::rootImage($rep->user_id);
-                        @endphp
-                        <div style="width: 30px; height:30px;">
-                            <img src="{{$rootImage}}" class="img-fluid b50" style="width: 90%; height:90%; margin:10px" alt="">
+                      <div id="{{$comment->id}}">
+                        @foreach($list_rep as $rep)
+                        <div class="d-flex mb-4 g2" style="margin-left: 20px;">
+                          @php  
+                            $name = App\Http\Controllers\UserController::getName($rep->user_id);
+                            $rootImage = App\Http\Controllers\UserController::rootImage($rep->user_id);
+                          @endphp
+                          <div style="width: 30px; height:30px;">
+                              <img src="{{$rootImage}}" class="img-fluid b50" style="width: 90%; height:90%; margin:10px" alt="">
+                          </div>
+                          <div class="d-flex flex-column justify-content-between">
+                              <div>
+                                  <strong>{{$name}}</strong><br>
+                                  <span>{{$rep->content}}</span>
+                              </div>
+                              <div class="d-flex g3">
+                                  @if(App\Http\Controllers\LikeController::check(App\Http\Controllers\CookieController::get('user'),$rep->id))
+                                    <a href="/details/{{$id}}/unlike/{{$rep->id}}" id="like{{$rep->id}}"><i class="fa-solid fa-thumbs-up"></i>{{ App\Http\Controllers\LikeController::Like($comment->id) }}</a>
+                                  @else
+                                    <a href="/details/{{$id}}/like/{{$rep->id}}" id="like{{$rep->id}}"><i class="fa-regular fa-thumbs-up"></i>{{ App\Http\Controllers\LikeController::Like($comment->id) }}</a>
+                                  @endif
+                                  <a href="#cmt{{$rep->id}}" class="rep btn-light" aria-label="Close" style="border: none;" idform="repcomment{{$comment->id}}">Trả lời</a>
+                                  @if(App\Http\Controllers\CommentController::check(App\Http\Controllers\CookieController::get('user'), $rep->id))
+                                  <a href="/details/{{$id}}/deleteComment/{{$rep->id}}" class="btn-light" aria-label="Close" style="border: none;"><i class="fa-solid fa-trash"></i>Xóa</a>
+                                  @endif
+                                  <span>{{$rep->created_at}}</span>
+                              </div>
+                          </div>
+                          <hr>
                         </div>
-                        <div class="d-flex flex-column justify-content-between">
-                            <div>
-                                <strong>{{$name}}</strong><br>
-                                <span>{{$rep->content}}</span>
-                            </div>
-                            <div class="d-flex g3">
-                                @if(App\Http\Controllers\LikeController::check(App\Http\Controllers\CookieController::get('user'),$rep->id))
-                                  <a href="/details/{{$id}}/unlike/{{$rep->id}}" id="like{{$rep->id}}"><i class="fa-solid fa-thumbs-up"></i>{{ App\Http\Controllers\LikeController::Like($comment->id) }}</a>
-                                @else
-                                  <a href="/details/{{$id}}/like/{{$rep->id}}" id="like{{$rep->id}}"><i class="fa-regular fa-thumbs-up"></i>{{ App\Http\Controllers\LikeController::Like($comment->id) }}</a>
-                                @endif
-                                <a href="#cmt{{$rep->id}}" class="rep btn-light" aria-label="Close" style="border: none;" idform="repcomment{{$comment->id}}">Trả lời</a>
-                                @if(App\Http\Controllers\CommentController::check(App\Http\Controllers\CookieController::get('user'), $rep->id))
-                                <a href="/details/{{$id}}/deleteComment/{{$rep->id}}" class="btn-light" aria-label="Close" style="border: none;"><i class="fa-solid fa-trash"></i>Xóa</a>
-                                @endif
-                                <span>{{$rep->created_at}}</span>
-                            </div>
+                        @endforeach
                         </div>
-                        <hr>
-                      </div>
-                      @endforeach
                       <hr>
                     @endforeach
                     </div>
@@ -209,4 +211,17 @@
             </div>
         </div>
     </div>
+<script>
+  $(document).ready(function(){
+    $('#text_cmt').keypress(function(e){
+      var text_cmt = this.value + e.key
+      console.log(text_cmt)
+      if(e.which == 13){
+        $('#cmt').trigger('click');
+      }
+      
+    })
+    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+  })
+</script>
 @endsection

@@ -69,6 +69,7 @@ Route::controller(PostController::class)->group(function(){
     Route::get('/','index');
     Route::get('/details/{id}','show');
     Route::post('/search', 'search');
+    Route::get('/search/category/{id_cat}', 'search_cat');
 });
  
 Route::get('/admin', function () {

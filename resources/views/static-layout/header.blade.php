@@ -136,19 +136,19 @@
     <div class="d-flex justify-content-between align-items-center">
         <li><a href="/"><i class="fa-solid fa-house"></i></a></li>
         <ul class="d-flex justify-content-between align-items-center b0 py-3 head w-100 ">
-            <li>Thời sự</li>
-            <li>Góc nhìn</li>
-            <li>Thế giới</li>
-            <li>Podcasts</li>
-            <li>Kinh doanh</li>
-            <li>Khoa học</li>
-            <li>Giải trí</li>
-            <li>Thể thao</li>
-            <li>Pháp luật</li>
-            <li>Giáo dục</li>
-            <li>Đời sống</li>
-            <li>Du lịch</li>
-            <li>Xe </li>
+            <li><a href="/search/category/{{App\Http\Controllers\CategoryController::getID('Thời sự')}}">Thời sự</a></li>
+            <li><a href="/search/category/{{App\Http\Controllers\CategoryController::getID('Góc nhìn')}}">Góc nhìn</a></li>
+            <li><a href="/search/category/{{App\Http\Controllers\CategoryController::getID('Thế giới')}}">Thế giới</a></li>
+            <li><a href="/search/category/{{App\Http\Controllers\CategoryController::getID('Podcasts')}}">Podcasts</a></li>
+            <li><a href="/search/category/{{App\Http\Controllers\CategoryController::getID('Kinh doanh')}}">Kinh doanh</a></li>
+            <li><a href="/search/category/{{App\Http\Controllers\CategoryController::getID('Khoa học')}}">Khoa học</a></li>
+            <li><a href="/search/category/{{App\Http\Controllers\CategoryController::getID('Giải trí')}}">Giải trí</a></li>
+            <li><a href="/search/category/{{App\Http\Controllers\CategoryController::getID('Thể thao')}}">Thể thao</a></li>
+            <li><a href="/search/category/{{App\Http\Controllers\CategoryController::getID('Pháp luật')}}">Pháp luật</a></li>
+            <li><a href="/search/category/{{App\Http\Controllers\CategoryController::getID('giáo dục')}}">Giáo dục</a></li>
+            <li><a href="/search/category/{{App\Http\Controllers\CategoryController::getID('Đời sống')}}">Đời sống</a></li>
+            <li><a href="/search/category/{{App\Http\Controllers\CategoryController::getID('Du lịc')}}">Du lịch</a></li>
+            <li><a href="/search/category/{{App\Http\Controllers\CategoryController::getID('Xe')}}">Xe</a></li>
         </ul>
     </div>
 </div>

@@ -169,4 +169,16 @@ class PostController extends Controller
             ]
         );
     }
+
+    public function search_cat($idcat)
+    {
+        $search_posts = post::query()->where('category_id',$idcat)->limit(5)->get();
+        $view_posts = post::orderBy('view', 'desc')->where('category_id', '!=', $idcat)->get();
+        return view('.non-static-layout.search', 
+            [
+                'search_posts' => $search_posts,
+                'view_posts' => $view_posts
+            ]
+        );
+    }
 }
