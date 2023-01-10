@@ -83,11 +83,13 @@ Route::get('/admin/page404', function () {
 /*  */
 Route::get('/admin/post', [AminPostController::class, "index"]);
 Route::get('/admin/post/create', [AminPostController::class, "create"]);
+Route::get('/admin/post/content/{id}', [AminPostController::class, "addcontent"]);
+Route::post('/admin/post/content/{id}', [AminPostController::class, "storecontent"]);
+Route::get('/admin/post/detail/{id}', [AminPostController::class, "detail"]);
 Route::post('/admin/post/create', [AminPostController::class, "store"]);
 Route::get('/admin/post/edit/{id}', [AminPostController::class, "edit"]);
 Route::post('/admin/post/edit/{id}',  [AminPostController::class, "update"]); 
 Route::get('/admin/post/delete/{id}',  [AminPostController::class, "delete"]); 
-
 
 /* user */
 Route::get('/admin/users', [AminUserController::class, "index"]);
