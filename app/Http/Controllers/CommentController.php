@@ -59,6 +59,7 @@ class CommentController extends Controller
                 $not = new notification();
                 $not->title = "cũng bình luận về bài viết bạn theo dõi";
                 $not->user_id = $comment->user_id;
+                $not->user_id_cmt = $cookie->get('user');
                 $not->post_id = $id;
                 $not->save();
             }
