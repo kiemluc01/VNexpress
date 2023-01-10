@@ -112,7 +112,7 @@
                     <a href="/details/{{$search_posts[$i]['id']}}">{{$search_posts[$i]['name']}}</a>
                     <div class="row pt-3">
                         <a href="/details/{{$search_posts[$i]['id']}}" class="col-md-5">
-                            <img src="{{$search_posts[$i]['rootImage']}}" class="img-fluid" alt="">
+                            <img src="{{$search_posts[$i]['rootImage']}}" class="img-fluid" alt="" style="max-height: 133px;">
                         </a>
                         <div class="col-md-7 pl-0">
                             <p class="ab">{{$search_posts[$i]['shortDescription']}}</p>
