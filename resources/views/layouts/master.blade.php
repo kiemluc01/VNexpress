@@ -88,7 +88,14 @@
                     </div>
                 </div>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="/logout" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Logout</span>
+                </a>
+                
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
 
