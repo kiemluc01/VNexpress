@@ -72,7 +72,7 @@
                               <img src="/assets/image/icon/logo.png" alt="">
                             </div>
                             <div>
-                              <p class="tt-tb"><strong>TIN TỨC UTE</strong> {{$not->title}}</p>
+                              <p class="tt-tb"><strong>Tin Tức VNexpress</strong> {{$not->title}}</p>
                               <p style="color: #1876f2;">{{$not->created_at}}</p>
                             </div>
                           </li>

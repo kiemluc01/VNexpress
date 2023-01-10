@@ -9,6 +9,8 @@ use App\Models\category;
 use App\Models\post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use App\Models\notification;
 
 class PostController extends Controller
 {
@@ -49,19 +51,30 @@ class PostController extends Controller
             'shortDescription'  => $shortDescription,
             'domestic' => $domestic,
             'view' => $view, 
-            'create_at' => date('Y-m-d H:i:s'),
-            'update_at' => date('Y-m-d H:i:s'),
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
         );
+        
+        $insertData = DB::table('post')->insert($dataInsertToDatabase);
+        $users = User::query()->where('id','!=', null)->get();
+        $posts = post::orderBy('id', 'desc')->first();
+        foreach($users as $user){
+            $not = new notification();
+            $not->title = "đã có bài viết mới";
+            $not->user_id = $user->id;
+            $not->post_id = $posts->id;
+            $not->save();
+        }
+        
         $details = [
             'title' => 'Thông Báo Về Tin Mới Trong TIN TỨC EXPRESS',
-            'body' => 'Đã có thông báo mới trong bảng tin, xin mời bạn vào xem!!!'
+            'body' => 'Đã có thông báo mới trong bảng tin, xin mời bạn vào xem!!!',
+            'url' => request()->getHost()
         ];
-        $mail_to =[];
+        $mail_to = User::query()->where('email','!=',null)->get();
         foreach ($mail_to as $mail) {
-            Mail::to(strval($mail))->send(new Sendmail($details));
+            Mail::to(($mail->email))->send(new Sendmail($details));
         }
-        $insertData = DB::table('post')->insert($dataInsertToDatabase);
-
         return redirect('/admin/post');
     }
 
