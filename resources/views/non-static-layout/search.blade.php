@@ -32,7 +32,7 @@
             </div>
             <div class="col-md-4">
                 <p class="mb-2">Khu vực</p>
-                <select class="form-select" id="dometisc" aria-label="Default select example">
+                <select class="form-select" id="khuvuc" aria-label="Default select example">
                     <option selected>Tất cả</option>
                     <option value="1">Thế giới</option>
                     <option value="2">Trong nước</option>
@@ -113,7 +113,12 @@
 </div>
 <script>
     $(document).ready(function(){
-        
+        $('#khuvuc').change(function(){
+            var text = this.value 
+            $.ajax({
+
+            })
+        })
     })
 </script>
 @endsection

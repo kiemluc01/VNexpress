@@ -138,7 +138,7 @@ class PostController extends Controller
 
     public static function DomesticPost()
     {
-        $posts = post::orderBy('create_at', 'asc')->where('domestic', true)->limit(5)->get();
+        $posts = post::orderBy('created_at', 'asc')->where('domestic', true)->limit(5)->get();
         return $posts->toArray();
     }
 
