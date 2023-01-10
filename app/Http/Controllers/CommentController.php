@@ -6,6 +6,7 @@ use App\Models\comment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CookieController;
+use App\Models\notification;
 
 class CommentController extends Controller
 {
@@ -52,6 +53,16 @@ class CommentController extends Controller
             
             $comment->user_id = $cookie->get('user');
             $comment->save();
+
+            $comments = comment::query()->distinct(['user_id'])->where('post_id', $id)->get();
+            foreach($comments as $comment){
+                $not = new notification();
+                $not->title = "cũng bình luận về bài viết bạn theo dõi";
+                $not->user_id = $comment->user_id;
+                $not->user_id_cmt = $cookie->get('user');
+                $not->post_id = $id;
+                $not->save();
+            }
             return redirect($cookie->get('url'));
         }
         return redirect($cookie->get('url'))->with('nologin','comment không thành công');

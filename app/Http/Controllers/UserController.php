@@ -118,6 +118,8 @@ class UserController extends Controller
                 if ($request->has('remember')) {
                     $Cookie->set('password', $password);
                 }
+                if($user->is_admin)
+                    return redirect('/admin/post')->with('success', 'đăng nhập thành công');
                 return redirect($link)->with('success', 'đăng nhập thành công');
             }
         }

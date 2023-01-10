@@ -50,8 +50,6 @@ Route::get('/send-mail', function () {
     foreach ($mail_to as $mail) {
         Mail::to(strval($mail))->send(new Sendmail($details));
     }
-
-    dd("Email is Sent.");
 });
 
 //User controller
@@ -74,9 +72,9 @@ Route::controller(PostController::class)->group(function () {
     Route::post('/search', 'search');
     Route::get('/search/category/{id_cat}', 'search_cat');
 });
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-});
+// Route::get('/admin', function () {
+//     return view('admin.dashboard');
+// });
 
 Route::get('/admin/page404', function () {
     return view('admin.page404');
