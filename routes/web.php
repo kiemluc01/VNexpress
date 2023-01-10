@@ -50,8 +50,6 @@ Route::get('/send-mail', function () {
     foreach ($mail_to as $mail) {
         Mail::to(strval($mail))->send(new Sendmail($details));
     }
-
-    dd("Email is Sent.");
 });
 
 //User controller

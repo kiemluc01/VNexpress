@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Mail\Sendmail;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 use App\Models\category;
 use App\Models\post;
@@ -50,8 +52,16 @@ class PostController extends Controller
             'create_at' => date('Y-m-d H:i:s'),
             'update_at' => date('Y-m-d H:i:s'),
         );
-
+        $details = [
+            'title' => 'Thông Báo Về Tin Mới Trong TIN TỨC EXPRESS',
+            'body' => 'Đã có thông báo mới trong bảng tin, xin mời bạn vào xem!!!'
+        ];
+        $mail_to =[];
+        foreach ($mail_to as $mail) {
+            Mail::to(strval($mail))->send(new Sendmail($details));
+        }
         $insertData = DB::table('post')->insert($dataInsertToDatabase);
+
         return redirect('/admin/post');
     }
 
