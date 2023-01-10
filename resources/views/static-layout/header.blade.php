@@ -50,47 +50,34 @@
                     >
                     <div class="my-3 luia px-2">
                       <p><strong>Thông báo</strong></p>
-                      <div class="theme-switch">
-                        <div class="switch"></div>
-                      </div>
                     </div>
                     <div class="list_tb">
-                      <li class="d-flex p-1 gap10 align-items-center mb-2">
-                        <div class="img-tb">
-                          <img src="https://scontent.fdad1-3.fna.fbcdn.net/v/t39.30808-6/311872178_1179919565931920_215782886144448130_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=bsh8eV1wJGEAX-o83q5&_nc_ht=scontent.fdad1-3.fna&oh=00_AfBm5E_qWi3dRYSc9_gnjByAlzpKxq2UtvC9_w_KCEZBbA&oe=63A86032" alt="">
-                        </div>
-                        <div>
-                          <p class="tt-tb"><strong>Chương</strong> đã nhắc bình luận trong gì đóaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-                          <p style="color: #1876f2;">1 ngày trước</p>
-                        </div>
-                      </li>
-                      <li class="d-flex p-1 gap10 align-items-center mb-2">
-                        <div class="img-tb">
-                          <img src="https://scontent.fdad1-3.fna.fbcdn.net/v/t39.30808-6/311872178_1179919565931920_215782886144448130_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=bsh8eV1wJGEAX-o83q5&_nc_ht=scontent.fdad1-3.fna&oh=00_AfBm5E_qWi3dRYSc9_gnjByAlzpKxq2UtvC9_w_KCEZBbA&oe=63A86032" alt="">
-                        </div>
-                        <div>
-                          <p class="tt-tb"><strong>Chương</strong> đã nhắc bình luận trong gì trong ảnh của bạn thi phải </p>
-                          <p style="color: #1876f2;">1 ngày trước</p>
-                        </div>
-                      </li>
-                      <li class="d-flex p-1 gap10 align-items-center mb-2">
-                        <div class="img-tb">
-                          <img src="https://scontent.fdad1-3.fna.fbcdn.net/v/t39.30808-6/311872178_1179919565931920_215782886144448130_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=bsh8eV1wJGEAX-o83q5&_nc_ht=scontent.fdad1-3.fna&oh=00_AfBm5E_qWi3dRYSc9_gnjByAlzpKxq2UtvC9_w_KCEZBbA&oe=63A86032" alt="">
-                        </div>
-                        <div>
-                          <p class="tt-tb"><strong>Chương</strong> đã nhắc bình luận trong gì trong ảnh của bạn thi phải </p>
-                          <p style="color: #1876f2;">1 ngày trước</p>
-                        </div>
-                      </li>
-                      <li class="d-flex p-1 gap10 align-items-center mb-2">
-                        <div class="img-tb">
-                          <img src="https://scontent.fdad1-3.fna.fbcdn.net/v/t39.30808-6/311872178_1179919565931920_215782886144448130_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=bsh8eV1wJGEAX-o83q5&_nc_ht=scontent.fdad1-3.fna&oh=00_AfBm5E_qWi3dRYSc9_gnjByAlzpKxq2UtvC9_w_KCEZBbA&oe=63A86032" alt="">
-                        </div>
-                        <div>
-                          <p class="tt-tb"><strong>Chương</strong> đã nhắc bình luận trong gì trong ảnh của bạn thi phải </p>
-                          <p style="color: #1876f2;">1 ngày trước</p>
-                        </div>
-                      </li>
+                      @php  
+                        $nots = App\Http\Controllers\NotificationController::get(App\Http\Controllers\CookieController::get('user'));
+                      @endphp
+                      @foreach($nots as $not)
+                        @if($not->user_id_cmt != null)
+                          <li class="d-flex p-1 gap10 align-items-center mb-2">
+                            <div class="img-tb">
+                              <img src="{{App\Http\Controllers\UserCOntroller::rootImage($not->user_id_cmt)}}" alt="">
+                            </div>
+                            <div>
+                              <p class="tt-tb"><strong>{{App\Http\Controllers\UserCOntroller::getName($not->user_id_cmt)}}</strong> {{$not->title}}</p>
+                              <p style="color: #1876f2;">{{$not->created_at}}</p>
+                            </div>
+                          </li>
+                        @else  
+                          <li class="d-flex p-1 gap10 align-items-center mb-2">
+                            <div class="img-tb">
+                              <img src="/assets/image/icon/logo.png" alt="">
+                            </div>
+                            <div>
+                              <p class="tt-tb"><strong>TIN TỨC UTE</strong> {{$not->title}}</p>
+                              <p style="color: #1876f2;">{{$not->created_at}}</p>
+                            </div>
+                          </li>
+                        @endif
+                      @endforeach
                     </div>
                     </ul>
                   </div>
